@@ -20,8 +20,8 @@ export default class Main extends Component {
         this.grid.on('finish', this.handleFinishGame.bind(this));
         // TODO:
         // In this constructor, you should new a Reset component and handle its fire event here.
-
-
+        this.reset = new Reset(root.querySelector('.reset'));
+        this.reset.on('click', this.handleResetClick.bind(this));
 
         this.grid.setTurn(this.whichTurn);
     }
@@ -30,8 +30,9 @@ export default class Main extends Component {
         // TODO:
         // In this function, you should handle the cell click,
         // including setting self property and calling child components' methods(setTurn).
-
-
+        this.whichTurn = this.whichTurn==="O"?'X':'O';
+        this.grid.setTurn(this.whichTurn);
+        this.banner.turn.setTurn(this.whichTurn);
     }
 
     handleFinishGame(firer, mode) {
@@ -44,9 +45,9 @@ export default class Main extends Component {
     }
     handleResetClick() {
         // TODO:
-        // In this function, you shoud reset self property and calling child components' methods(reset).
-
-        
+        // In this function, you should reset self property and calling child components' methods(reset).
+        this.grid.reset(this.whichTurn);
+        this.banner.reset(this.whichTurn);
     }
 }
 

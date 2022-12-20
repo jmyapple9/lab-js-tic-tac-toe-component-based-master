@@ -28,17 +28,17 @@ export default class Grid extends Component {
         // TODO:
         // In this function, you should handle event of the cell click.
 
-        if (/*If the cell has occupied.*/){
+        if (firer.isOccupied()){
             return;
         }
         else{
             /*If the cell hasn't occupied.*/
+            firer.occupyCell(this.whichTurn);
         }
 
         if (!this.checkFinish(firer)){
             /*If the game haven't finish, fire a event.*/
-
-
+            this.fire('click');
         }
     }
 
@@ -69,8 +69,8 @@ export default class Grid extends Component {
                 if(count === 3) {
                     // TODO:
                     // In this scope, you should fire event with args and return value.
-
-
+                    this.fire('finish', 'win');
+                    return true;
                 }
             }
         }
@@ -78,18 +78,20 @@ export default class Grid extends Component {
         if(this.checkAllOccupied()){
             // TODO:
             // In this scope, you should fire event with args and return value.
-
-
+            this.fire('finish', 'tie');
+            return true;
         }
-        
+        // this.whichTurn==="O"?this.setTurn('X'):this.setTurn('O');
         return false;
     }
 
     checkAllOccupied() {
         // TODO:
         // In this function, you should judge whether all cells have been occupied and return value.
-
-
+        for(let cell of this.cells){
+            if(!cell.isOccupied()) return false;
+        }
+        return true;
     }
 
     getSituation() {

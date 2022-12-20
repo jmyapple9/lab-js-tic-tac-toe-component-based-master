@@ -21,7 +21,7 @@ export default class Role extends Component {
     setScore() {
         // TODO:
         // In this function, you should record the role's score and update the textContent.
-
-        
+        this.score ++;
+        this.root.textContent = this.score.toString();
     }
 }

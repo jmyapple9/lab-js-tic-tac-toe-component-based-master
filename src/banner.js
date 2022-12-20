@@ -23,12 +23,9 @@ export default class Banner extends Component {
     reset(x) {
         // TODO:
         // In this function, you should reset the child components by calling their methods.
-
-
-
-
-
-
+        this.roles['O'].reset();
+        this.roles['X'].reset();
+        this.turn.setTurn(x);
     }
 
     setScore(x) {
